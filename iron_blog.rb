@@ -19,7 +19,7 @@ class Blog
 		ordered_posts = order_posts_by_date
 		ordered_posts.map do |post|
         	post_title = get_customize_title post
-    		puts "#{post_title}\n********************\n#{post.text}\n"
+    		puts "#{post_title}\n********************\n#{post.text}, #{post.date}\n "
     	end
 	end
 	private
@@ -36,4 +36,6 @@ blog = Blog.new
 blog.add_post Post.new "Post 1", Time.now, "Ironhack post1", true
 sleep(1)
 blog.add_post Post.new "Post 2", Time.now, "Ironhack post2", false
+sleep(1)
+blog.add_post Post.new "Post 3", Time.now, "Ironhack post3", false
 blog.publish_front_page
