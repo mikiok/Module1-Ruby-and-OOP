@@ -1,6 +1,4 @@
 require 'imdb'
-require 'colorize'
-
 
 class Movies
 	@@file = "movies.txt"
@@ -42,6 +40,16 @@ class Ratings
 	end
 end
 
+class Symbols
+	def self.sharp_separator
+		"|"
+	end
+
+	def self.line_separator
+		"--"
+	end
+end
+
 class ASCIIchart
 	@@result = ""
 
@@ -57,12 +65,12 @@ class ASCIIchart
 		while (counter >= 0)
 			for element in Ratings.get_rates
 				if (element >= counter)
-					chart += "|#"
+					chart += "#{Symbols.sharp_separator}#"
 				else
-					chart += "| "
+					chart += "#{Symbols.sharp_separator} "
 				end
 			end
-			chart += "|\n"
+			chart += "#{Symbols.sharp_separator}\n"
 			counter -= 1
 		end
 		chart
@@ -71,7 +79,7 @@ class ASCIIchart
 	def self.put_line
 		line =""
 		for element in Movies.get_movies
-			line+="--"
+			line+="#{Symbols.line_separator}"
 		end
 		line += "-\n"
 	end
@@ -79,7 +87,7 @@ class ASCIIchart
 	def self.put_indexes
 		indexes = ""
 		for index in 1..Ratings.get_rates.size
-			indexes += "|#{index}"
+			indexes += "#{Symbols.sharp_separator}#{index}"
 		end
 		indexes += "|\n\n"
 	end
